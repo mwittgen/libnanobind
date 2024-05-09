@@ -2,18 +2,22 @@ cmake_minimum_required(VERSION 3.15...3.26)
 
 project(nanobind_shared LANGUAGES CXX)
 include(GNUInstallDirs)
+include(FetchContent)
 
 find_package(Python
   REQUIRED COMPONENTS Interpreter Development.Module
   OPTIONAL_COMPONENTS Development.SABIModule)
 
-execute_process(
-  COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
-  OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE NB_DIR)
-list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
+FetchContent_Declare(
+  nanobind
+  GIT_REPOSITORY https://github.com/wjakob/nanobind
+  OVERRIDE_FIND_PACKAGE
+)
+FetchContent_Populate(nanobind)
 
-find_package(nanobind CONFIG REQUIRED)
-
+#list(APPEND CMAKE_PREFIX_PATH "${NB_DIR}")
+#find_package(nanobind CONFIG REQUIRED)
+add_subdirectory(${nanobind_SOURCE_DIR})
 nanobind_add_module(
   test_nanobind
   STABLE_ABI
@@ -22,3 +26,5 @@ nanobind_add_module(
 )
 
 install(TARGETS nanobind LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+install(DIRECTORY "${nanobind_SOURCE_DIR}/include/nanobind"
+	DESTINATION "${CMAKE_INSTALL_PREFIX}/include" FILES_MATCHING PATTERN "*.h*")
