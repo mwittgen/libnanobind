@@ -11,7 +11,7 @@ find_package(Python
 FetchContent_Declare(
   nanobind
   GIT_REPOSITORY https://github.com/wjakob/nanobind
-  GIT_TAG v1.9.2
+  GIT_TAG master
   OVERRIDE_FIND_PACKAGE
 )
 FetchContent_Populate(nanobind)
