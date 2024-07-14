@@ -26,6 +26,6 @@ nanobind_add_module(
   tests/test_nanobind.cpp
 )
 
-install(TARGETS nanobind LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+install(TARGETS nanobind-abi3 LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
 install(DIRECTORY "${nanobind_SOURCE_DIR}/include/nanobind"
 	DESTINATION "${CMAKE_INSTALL_PREFIX}/include" FILES_MATCHING PATTERN "*.h*")
