@@ -1,5 +1,5 @@
 build() {
-  mkdir build
+  mkdir -p build
   cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_VERBOSE_MAKEFILE=On
   cmake --build build --config Release
 }
