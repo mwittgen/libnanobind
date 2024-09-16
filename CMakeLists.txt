@@ -10,8 +10,8 @@ find_package(Python
 
 FetchContent_Declare(
   nanobind
-  GIT_REPOSITORY https://github.com/mwittgen/nanobind
-  GIT_TAG support_flag_enums
+  GIT_REPOSITORY https://github.com/wjakob/nanobind
+  GIT_TAG master
   OVERRIDE_FIND_PACKAGE
 )
 FetchContent_Populate(nanobind)
